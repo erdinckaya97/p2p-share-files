@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>P2P File Sharing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>📦 P2P File Sharing</h1>
+            <h1><i class="fas fa-network-wired"></i> P2P File Sharing</h1>
             <p class="subtitle">Share any files directly and securely</p>
         </header>
 
@@ -17,7 +18,7 @@
             <!-- Sender Section -->
             <div id="senderSection" class="section">
                 <div class="upload-area" id="uploadArea">
-                    <div class="upload-icon">📁</div>
+                    <div class="upload-icon"><i class="fas fa-folder-open"></i></div>
                     <h2>Drag and drop files here or click</h2>
                     <p>Select any files to start sharing (images, documents, code, archives, etc.)</p>
                     <input type="file" id="fileInput" multiple hidden>
@@ -28,7 +29,7 @@
 
                 <!-- File Info -->
                 <div id="fileInfo" class="file-info hidden">
-                    <h3>📋 Selected Files</h3>
+                    <h3><i class="fas fa-clipboard-list"></i> Selected Files</h3>
                     <div id="fileList"></div>
                     
                     <div class="share-controls">
@@ -38,7 +39,7 @@
 
                 <!-- Share Link Section -->
                 <div id="shareLinkSection" class="share-section hidden">
-                    <h3>🔗 Share Link</h3>
+                    <h3><i class="fas fa-link"></i> Share Link</h3>
                     <div class="link-container">
                         <input type="text" id="shareLink" readonly>
                         <button id="copyLinkBtn" class="btn btn-secondary">Copy</button>
@@ -67,7 +68,7 @@
 
             <!-- Receiver Section -->
             <div id="receiverSection" class="section hidden">
-                <h2>📥 Receiving Files</h2>
+                <h2><i class="fas fa-download"></i> Receiving Files</h2>
                 <div class="status-box">
                     <div class="status-item">
                         <span class="label">Status:</span>
@@ -92,7 +93,7 @@
         </main>
 
         <footer>
-            <p>🔒 Peer-to-peer transfer • No server upload • Completely secure</p>
+            <p><i class="fas fa-lock"></i> Peer-to-peer transfer • No server upload • Completely secure</p>
         </footer>
     </div>
 
