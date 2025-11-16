@@ -368,7 +368,7 @@ function displayReceivedImage(fileName, blob, fileType) {
                     <div class="file-card-type">${getFileTypeLabel(fileName)}</div>
                 </div>
                 <button class="download-btn" onclick="downloadFile('${fileUrl}', '${fileName}')">
-                    💾 Download
+                    <i class="fas fa-download"></i> Download
                 </button>
             </div>
         `;
@@ -384,7 +384,7 @@ function displayReceivedImage(fileName, blob, fileType) {
                     <div class="file-card-type">${getFileTypeLabel(fileName)}</div>
                 </div>
                 <button class="download-btn" onclick="downloadFile('${fileUrl}', '${fileName}')">
-                    💾 Download
+                    <i class="fas fa-download"></i> Download
                 </button>
             </div>
         `;
@@ -403,7 +403,7 @@ function openImageLightbox(imageUrl, fileName) {
         lightbox.innerHTML = `
             <div class="lightbox-backdrop" onclick="closeLightbox()"></div>
             <div class="lightbox-content">
-                <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+                <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
                 <img id="lightboxImage" src="" alt="">
                 <div class="lightbox-filename" id="lightboxFilename"></div>
             </div>
@@ -451,46 +451,46 @@ function getFileIcon(fileName, fileType) {
     
     // Images
     if (fileType.startsWith('image/') || ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp', 'bmp', 'ico'].includes(ext)) {
-        return '🖼️';
+        return '<i class="fas fa-image"></i>';
     }
     
     // Code files
-    if (['js', 'jsx', 'ts', 'tsx'].includes(ext)) return '📜';
-    if (['html', 'htm'].includes(ext)) return '🌐';
-    if (['css', 'scss', 'sass', 'less'].includes(ext)) return '🎨';
-    if (['php'].includes(ext)) return '🐘';
-    if (['py'].includes(ext)) return '🐍';
-    if (['java'].includes(ext)) return '☕';
-    if (['cpp', 'c', 'h'].includes(ext)) return '⚙️';
-    if (['rb'].includes(ext)) return '💎';
-    if (['go'].includes(ext)) return '🐹';
-    if (['rs'].includes(ext)) return '🦀';
-    if (['swift'].includes(ext)) return '🦅';
-    if (['kt', 'kts'].includes(ext)) return '🅺';
-    if (['sql'].includes(ext)) return '🗄️';
-    if (['json', 'xml', 'yaml', 'yml', 'toml'].includes(ext)) return '📋';
+    if (['js', 'jsx', 'ts', 'tsx'].includes(ext)) return '<i class="fab fa-js-square"></i>';
+    if (['html', 'htm'].includes(ext)) return '<i class="fab fa-html5"></i>';
+    if (['css', 'scss', 'sass', 'less'].includes(ext)) return '<i class="fab fa-css3-alt"></i>';
+    if (['php'].includes(ext)) return '<i class="fab fa-php"></i>';
+    if (['py'].includes(ext)) return '<i class="fab fa-python"></i>';
+    if (['java'].includes(ext)) return '<i class="fab fa-java"></i>';
+    if (['cpp', 'c', 'h'].includes(ext)) return '<i class="fas fa-code"></i>';
+    if (['rb'].includes(ext)) return '<i class="fas fa-gem"></i>';
+    if (['go'].includes(ext)) return '<i class="fas fa-code"></i>';
+    if (['rs'].includes(ext)) return '<i class="fab fa-rust"></i>';
+    if (['swift'].includes(ext)) return '<i class="fab fa-swift"></i>';
+    if (['kt', 'kts'].includes(ext)) return '<i class="fas fa-code"></i>';
+    if (['sql'].includes(ext)) return '<i class="fas fa-database"></i>';
+    if (['json', 'xml', 'yaml', 'yml', 'toml'].includes(ext)) return '<i class="fas fa-file-code"></i>';
     
     // Documents
-    if (['pdf'].includes(ext)) return '📕';
-    if (['doc', 'docx'].includes(ext)) return '📘';
-    if (['xls', 'xlsx'].includes(ext)) return '📊';
-    if (['ppt', 'pptx'].includes(ext)) return '📽️';
-    if (['txt', 'md', 'markdown'].includes(ext)) return '📄';
+    if (['pdf'].includes(ext)) return '<i class="fas fa-file-pdf"></i>';
+    if (['doc', 'docx'].includes(ext)) return '<i class="fas fa-file-word"></i>';
+    if (['xls', 'xlsx'].includes(ext)) return '<i class="fas fa-file-excel"></i>';
+    if (['ppt', 'pptx'].includes(ext)) return '<i class="fas fa-file-powerpoint"></i>';
+    if (['txt', 'md', 'markdown'].includes(ext)) return '<i class="fas fa-file-alt"></i>';
     
     // Archives
-    if (['zip', 'rar', '7z', 'tar', 'gz', 'bz2'].includes(ext)) return '📦';
+    if (['zip', 'rar', '7z', 'tar', 'gz', 'bz2'].includes(ext)) return '<i class="fas fa-file-archive"></i>';
     
     // Media
-    if (['mp4', 'avi', 'mov', 'wmv', 'flv', 'mkv', 'webm'].includes(ext)) return '🎬';
-    if (['mp3', 'wav', 'ogg', 'flac', 'm4a', 'aac'].includes(ext)) return '🎵';
+    if (['mp4', 'avi', 'mov', 'wmv', 'flv', 'mkv', 'webm'].includes(ext)) return '<i class="fas fa-file-video"></i>';
+    if (['mp3', 'wav', 'ogg', 'flac', 'm4a', 'aac'].includes(ext)) return '<i class="fas fa-file-audio"></i>';
     
     // Others
-    if (['exe', 'app', 'dmg'].includes(ext)) return '⚡';
-    if (['apk', 'ipa'].includes(ext)) return '📱';
-    if (['ttf', 'otf', 'woff', 'woff2'].includes(ext)) return '🔤';
+    if (['exe', 'app', 'dmg'].includes(ext)) return '<i class="fas fa-cog"></i>';
+    if (['apk', 'ipa'].includes(ext)) return '<i class="fas fa-mobile-alt"></i>';
+    if (['ttf', 'otf', 'woff', 'woff2'].includes(ext)) return '<i class="fas fa-font"></i>';
     
     // Default
-    return '📄';
+    return '<i class="fas fa-file"></i>';
 }
 
 // Get file type label
