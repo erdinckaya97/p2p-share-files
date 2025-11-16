@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2P File Sharing</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📦 P2P File Sharing</h1>
+            <p class="subtitle">Share any files directly and securely</p>
+        </header>
+
+        <main>
+            <!-- Sender Section -->
+            <div id="senderSection" class="section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📁</div>
+                    <h2>Drag and drop files here or click</h2>
+                    <p>Select any files to start sharing (images, documents, code, archives, etc.)</p>
+                    <input type="file" id="fileInput" multiple hidden>
+                    <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+                        Choose Files
+                    </button>
+                </div>
+
+                <!-- File Info -->
+                <div id="fileInfo" class="file-info hidden">
+                    <h3>📋 Selected Files</h3>
+                    <div id="fileList"></div>
+                    
+                    <div class="share-controls">
+                        <button id="createLinkBtn" class="btn btn-success">Create Share Link</button>
+                    </div>
+                </div>
+
+                <!-- Share Link Section -->
+                <div id="shareLinkSection" class="share-section hidden">
+                    <h3>🔗 Share Link</h3>
+                    <div class="link-container">
+                        <input type="text" id="shareLink" readonly>
+                        <button id="copyLinkBtn" class="btn btn-secondary">Copy</button>
+                    </div>
+                    <p class="info-text">Share this link with the receiver. Keep this page open to establish connection.</p>
+                    
+                    <div class="status-box">
+                        <div class="status-item">
+                            <span class="label">Status:</span>
+                            <span id="connectionStatus" class="value">Waiting for Connection...</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="label">Transfer Progress:</span>
+                            <span id="sendProgress" class="value">0%</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="label">Speed:</span>
+                            <span id="sendSpeed" class="value">0 MB/s</span>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Receiver Section -->
+            <div id="receiverSection" class="section hidden">
+                <h2>📥 Receiving Files</h2>
+                <div class="status-box">
+                    <div class="status-item">
+                        <span class="label">Status:</span>
+                        <span id="receiveStatus" class="value">Connecting...</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="label">Download Progress:</span>
+                        <span id="receiveProgress" class="value">0%</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="label">Speed:</span>
+                        <span id="receiveSpeed" class="value">0 MB/s</span>
+                    </div>
+                </div>
+                <div class="progress-bar">
+                    <div id="receiveProgressFill" class="progress-fill"></div>
+                </div>
+
+                <!-- Received Files Display -->
+                <div id="receivedFiles" class="received-files"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>🔒 Peer-to-peer transfer • No server upload • Completely secure</p>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/peerjs@1.5.1/dist/peerjs.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+
