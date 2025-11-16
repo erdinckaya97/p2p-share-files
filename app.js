@@ -79,12 +79,19 @@ function setupEventListeners() {
         handleFiles(e.dataTransfer.files);
     });
 
-    uploadArea.addEventListener('click', () => {
-        fileInput.click();
+    uploadArea.addEventListener('click', (e) => {
+        // Prevent multiple clicks
+        if (e.target.tagName !== 'BUTTON') {
+            fileInput.click();
+        }
     });
 
     fileInput.addEventListener('change', (e) => {
-        handleFiles(e.target.files);
+        if (e.target.files && e.target.files.length > 0) {
+            handleFiles(e.target.files);
+            // Reset input to allow selecting the same file again
+            fileInput.value = '';
+        }
     });
 
     createLinkBtn.addEventListener('click', createShareLink);
@@ -351,7 +358,7 @@ function displayReceivedImage(fileName, blob, fileType) {
     
     if (isImage) {
         fileCard.innerHTML = `
-            <div class="file-preview">
+            <div class="file-preview" onclick="openImageLightbox('${fileUrl}', '${fileName.replace(/'/g, "\\'")}')">
                 <img src="${fileUrl}" alt="${fileName}">
             </div>
             <div class="file-card-footer">
@@ -385,6 +392,48 @@ function displayReceivedImage(fileName, blob, fileType) {
     
     document.getElementById('receivedFiles').appendChild(fileCard);
 }
+
+function openImageLightbox(imageUrl, fileName) {
+    // Create lightbox if it doesn't exist
+    let lightbox = document.getElementById('imageLightbox');
+    if (!lightbox) {
+        lightbox = document.createElement('div');
+        lightbox.id = 'imageLightbox';
+        lightbox.className = 'image-lightbox';
+        lightbox.innerHTML = `
+            <div class="lightbox-backdrop" onclick="closeLightbox()"></div>
+            <div class="lightbox-content">
+                <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+                <img id="lightboxImage" src="" alt="">
+                <div class="lightbox-filename" id="lightboxFilename"></div>
+            </div>
+        `;
+        document.body.appendChild(lightbox);
+    }
+    
+    // Set image and filename
+    document.getElementById('lightboxImage').src = imageUrl;
+    document.getElementById('lightboxFilename').textContent = fileName;
+    
+    // Show lightbox
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('imageLightbox');
+    if (lightbox) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Close lightbox with ESC key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeLightbox();
+    }
+});
 
 function downloadFile(blobUrl, fileName) {
     const a = document.createElement('a');
