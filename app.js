@@ -113,6 +113,12 @@ function handleFiles(files) {
 function displaySelectedFiles() {
     const fileList = document.getElementById('fileList');
     fileList.innerHTML = '';
+    
+    // Add file count header
+    const fileCount = document.createElement('div');
+    fileCount.className = 'file-count-badge';
+    fileCount.innerHTML = `<i class="fas fa-check-circle"></i> ${selectedFiles.length} file${selectedFiles.length > 1 ? 's' : ''} selected`;
+    fileList.appendChild(fileCount);
 
     selectedFiles.forEach(file => {
         const fileItem = document.createElement('div');
@@ -126,6 +132,13 @@ function displaySelectedFiles() {
         `;
         fileList.appendChild(fileItem);
     });
+    
+    // Calculate total size
+    const totalSize = selectedFiles.reduce((sum, file) => sum + file.size, 0);
+    const totalInfo = document.createElement('div');
+    totalInfo.className = 'total-size-info';
+    totalInfo.innerHTML = `<i class="fas fa-info-circle"></i> Total size: <strong>${formatBytes(totalSize)}</strong>`;
+    fileList.appendChild(totalInfo);
 }
 
 function createShareLink() {
